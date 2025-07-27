@@ -3,6 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/form-control": "^2.2.0",
+    "@chakra-ui/layout": "^2.3.1",
     "@chakra-ui/react": "^3.23.0",
     "@chakra-ui/theme": "^3.4.6",
     "@chakra-ui/theme-tools": "^2.2.6",
