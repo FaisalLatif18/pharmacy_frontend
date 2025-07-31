@@ -1,30 +1,19 @@
-// import React from "react";
-// import LoginForm from "../../components/Auth/LoginForm";
-// import { Box, Center } from "@chakra-ui/react";
-
-// const LoginPage: React.FC = () => {
-//   return (
-//     <Center minH="100vh" bg="gray.50">
-//       <Box w="100%" maxW="400px" p={4}>
-//         <LoginForm />
-//       </Box>
-//     </Center>
-//   );
-// };
-
-// export default LoginPage;
 import React from "react";
-import { Box, Flex, Heading, Image, Text, VStack } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text } from "@chakra-ui/react";
 import LoginForm from "../../components/Auth/LoginForm";
-
 import logo from "../../assets/logo.png";
+import { motion } from "framer-motion";
+import { Image as ChakraImage } from "@chakra-ui/react";
+// Motion-wrapped Chakra UI Image
+const MotionImage = motion(ChakraImage);
+const MotionBox = motion(Box);
 const LoginPage = () => {
   return (
     <Flex height="100vh" overflow="hidden">
-      {/* Left side with pharmacy image and branding */}
+      {/* Left branding panel */}
       <Box
         flex="1"
-        bg="#c2ffe1"
+        bg="#2e266d" // Deep pharmacy purple
         color="white"
         p={10}
         display="flex"
@@ -32,34 +21,38 @@ const LoginPage = () => {
         justifyContent="center"
         alignItems="center"
       >
-        <Image
+        <MotionImage
           src={logo}
           alt="Pharmacy Logo"
-          boxSize="180px"
-          boxAlign={"center"}
-          mb={4}
+          boxSize="360px" // 🔼 Increased size
+          mb={6}
+          initial={{ y: -100, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
         />
-        <Heading size="lg">Welcome to PharmacyMS</Heading>
-        <Text mt={3} fontSize="md">
+        <Heading size="lg" textAlign="center">
+          Welcome to PharmacyMS
+        </Heading>
+        <Text mt={3} fontSize="md" textAlign="center" px={4}>
           Manage prescriptions, inventory & patients efficiently
         </Text>
       </Box>
 
-      {/* Right side with form */}
+      {/* Right login panel */}
       <Flex flex="1" justify="center" align="center" bg="gray.50">
-        <Box
+        <MotionBox
           bg="white"
           p={8}
           rounded="lg"
           shadow="md"
           width="100%"
-          maxW="400px"
+          maxW="450px"
+          initial={{ x: 100, opacity: 0 }}
+          animate={{ x: 0, opacity: 1 }}
+          transition={{ duration: 0.6 }}
         >
-          <Heading mb={6} textAlign="center">
-            Login
-          </Heading>
-          <LoginForm />
-        </Box>
+            <LoginForm />
+          </MotionBox>
       </Flex>
     </Flex>
   );
