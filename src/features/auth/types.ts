@@ -12,3 +12,10 @@ export interface LoginResponse {
     role: string;
   };
 }
+
+export interface RegisterPayload  {
+  name: string;
+  email: string;
+  password: string;
+  role: "PHARMACIST" | "ADMIN" | "VISITOR";
+}

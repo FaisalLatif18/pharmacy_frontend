@@ -10,6 +10,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { login } from "../../features/auth/authService";
 import { LoginRequest } from "../../features/auth/types";
+import { useNavigate } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email("Invalid email").required("Email is required"),
@@ -27,7 +28,7 @@ const LoginForm: React.FC = () => {
   } = useForm<LoginRequest>({
     resolver: yupResolver(schema),
   });
-
+  const navigate = useNavigate();
   const onSubmit = async (data: LoginRequest) => {
     try {
       const response = await login(data);
@@ -73,6 +74,16 @@ const LoginForm: React.FC = () => {
           >
             Login
           </Button>
+          <Text fontSize="sm">
+            Don't have an account?{" "}
+            <Button
+              variant="ghost"
+              colorScheme="blue"
+              onClick={() => navigate("/register")}
+            >
+              Register
+            </Button>
+          </Text>
         </VStack>
       </form>
     </Box>
